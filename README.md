@@ -1,67 +1,78 @@
----
-Build and Ship Nuxt 3 fullstack starter apps with Auth, DB, Payments, Email & File storage 
+# Yağmur Cem Gül – OneLink Site
 
-Try [Supersaas today](https://supersaas.dev)
----
+A Nuxt 3–based landing page tailored to present Yağmur Cem Gül’s profile and links in a single view.
 
+## Table of Contents
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Development](#development)
+- [Production Build](#production-build)
+- [Customizing Data](#customizing-data)
+- [Icons](#icons)
+- [Deploying to Netlify](#deploying-to-netlify)
+- [Useful Commands](#useful-commands)
 
-[<img src="https://essentials.supersaas.dev/supersaas-banner.png">](https://supersaas.dev?ref=github-onelink)
+## Features
+- Built with Nuxt 3 and Tailwind CSS.
+- All profile content lives in `utils/defaultData.js` for easy updates.
+- Social and custom link icons rely on Nuxt Icon + Iconify; critical icons are also mirrored under `public/icons/`.
+- `npm run generate` produces a fully static bundle ready for any CDN or static host.
 
-# Onelink
+## Requirements
+- **Node.js 18.x** (recommended to manage via `nvm use 18`).
+- npm 9+ (bundled with Node 18).
 
-Onelink is an experimental link-in-bio tool, where the data lives in the URL. 
-
-
-
-![Screenshot2023-01-30 at 00 40 04@2x](https://user-images.githubusercontent.com/15716057/215350057-5fbf81f5-5f33-4cbe-98ba-0ced8b3c09c8.jpg)
-
-> **Note**
-> Since the URL can become very long, it's better to use a link shortener like https://dub.co
-
-Here's a demo page
-https://onelink-nu.vercel.app/1?data=eyJuIjoiSm9obiBTbm93IiwiZCI6IknigJltIEpvaG4gU25vdywgdGhlIGtpbmcgaW4gdGhlIG5vcnRoLiBJIGtub3cgTm90aGluZy4iLCJpIjoiaHR0cHM6Ly9pLmluc2lkZXIuY29tLzU2NzQzZmFkNzJmMmMxMmEwMDhiNmNjMCIsImYiOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vam9obl9zbm93IiwidCI6Imh0dHBzOi8vdHdpdHRlci5jb20vam9obl9zbm93IiwiaWciOiJodHRwczovL3d3dy5pbnN0YWdyYW0uY29tL2pvaG5fc25vdyIsImUiOiJtYWlsQGpvaG5fc25vdy5jYyIsImdoIjoiaHR0cHM6Ly9naXRodWIuY29tL2pvaG5fc25vdyIsInRnIjoiaHR0cHM6Ly90Lm1lL2pvaG5fc25vdyIsInciOiIrOTE4ODg4ODg4ODg4IiwieSI6Imh0dHBzOi8veW91dHViZS5jb20vQGpvaG5fc25vdyIsImwiOiJodHRwczovL2xpbmtlZGluLmNvbS9qb2huX3Nub3ciLCJscyI6W3sibCI6Ik15IFdlYnNpdGUiLCJpIjoicGg6Z2xvYmUtZHVvdG9uZSIsInUiOiJodHRwczovL2V4YW1wbGUuY29tIn0seyJsIjoiQW1hem9uIHdpc2hsaXN0IiwiaSI6ImFudC1kZXNpZ246YW1hem9uLW91dGxpbmVkIiwidSI6Imh0dHBzOi8vYW1hem9uLmluIn0seyJsIjoiUmVhY3QgSlMgY291cnNlIiwiaSI6Imdyb21tZXQtaWNvbnM6cmVhY3RqcyIsInUiOiJodHRwczovL3JlYWN0anMub3JnLyJ9LHsibCI6IkRvbmF0ZSBmb3Igb3VyIGNhdXNlIiwiaSI6Imljb25vaXI6ZG9uYXRlIiwidSI6Imh0dHBzOi8vd2hvLmludCJ9LHsibCI6IkRvd25sb2FkIG15IHJlc3VtZSIsImkiOiJwaDpmaWxlLXBkZiIsInUiOiJodHRwczovL2dvb2dsZS5jb20ifV19
-
-The data is converted to a base 64 string which we onelink uses as a query parameter. I have tried to reduce the json keys to be as small as possible
-
-Roadmap.
-1. Templates - make different templates, the `/1` after the host is basically a template here.
-2. Refactor code - a lot of repeated boilerplate code is added here - refactor it properly.
-
-## Setup locally
-
-Make sure to install the dependencies:
-
+## Installation
 ```bash
-# yarn
-yarn install
-
-# npm
 npm install
-
-# pnpm
-pnpm install --shamefully-hoist
 ```
+Running the install script will trigger `nuxt prepare` and create the `.nuxt` build artifacts.
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
+## Development
 ```bash
 npm run dev
 ```
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Production
-
-Build the application for production:
-
+## Production Build
 ```bash
-npm run build
+npm run generate
+```
+The static output is emitted to `.output/public`. Deploy this folder to any static hosting provider.
+
+## Customizing Data
+- Profile name, bio, socials, and custom link list are defined in `utils/defaultData.js`.
+- Avatar lives at `public/profil-foto.png`; change the file or update the `i` field in `defaultData.js`.
+- To add more links, append objects with `{ l, i, u }` fields to the `ls` array in the same file.
+
+## Icons
+- Primary icon keys reference Iconify collections (`zondicons`, `simple-icons`, `pixel`, `tabler`).
+- Matching SVG assets are stored under `public/icons/`. To add a new icon offline, drop the SVG file there and extend the `iconMap` in `components/ExternalLink.vue` (and optionally in the quick-pick buttons within `components/AppForm/Links.vue`).
+
+## Deploying to Netlify
+### Using Git
+1. Push the project to a Git host (GitHub, GitLab, Bitbucket, etc.).
+2. In Netlify, choose **Add new site → Import an existing project** and connect your repository.
+3. Configure build settings:
+   - **Build command**: `npm run generate`
+   - **Publish directory**: `.output/public`
+4. Trigger the first deploy. Netlify will provide a live URL; set up a custom domain if needed.
+
+### Using Netlify CLI
+```bash
+npm install -g netlify-cli
+netlify login
+netlify deploy --dir=.output/public        # draft
+netlify deploy --dir=.output/public --prod  # production
 ```
 
-Locally preview production build:
+## Useful Commands
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local development server. |
+| `npm run generate` | Produce the static site in `.output/public`. |
+| `npm run build` | Create an SSR build inside `.output/`. |
+| `npm run preview` | Preview the SSR build locally. |
 
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+> **Note:** Only `.output/public` is required for static hosting. Nuxt and npm will regenerate `.nuxt/` and `node_modules/` during fresh deployments on Netlify.
