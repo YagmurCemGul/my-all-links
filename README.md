@@ -39,7 +39,7 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser.
 ```bash
 npm run generate
 ```
-The static output is emitted to `.output/public`. Deploy this folder to any static hosting provider.
+The static output is emitted to the `dist/` directory. Deploy this folder to any static hosting provider.
 
 ## Customizing Data
 - Profile name, bio, socials, and custom link list are defined in `utils/defaultData.js`.
@@ -56,23 +56,23 @@ The static output is emitted to `.output/public`. Deploy this folder to any stat
 2. In Netlify, choose **Add new site → Import an existing project** and connect your repository.
 3. Configure build settings:
    - **Build command**: `npm run generate`
-   - **Publish directory**: `.output/public`
+   - **Publish directory**: `dist`
 4. Trigger the first deploy. Netlify will provide a live URL; set up a custom domain if needed.
 
 ### Using Netlify CLI
 ```bash
 npm install -g netlify-cli
 netlify login
-netlify deploy --dir=.output/public        # draft
-netlify deploy --dir=.output/public --prod  # production
+netlify deploy --dir=dist        # draft
+netlify deploy --dir=dist --prod  # production
 ```
 
 ## Useful Commands
 | Command | Description |
 | --- | --- |
 | `npm run dev` | Start the local development server. |
-| `npm run generate` | Produce the static site in `.output/public`. |
+| `npm run generate` | Produce the static site in `dist/`. |
 | `npm run build` | Create an SSR build inside `.output/`. |
 | `npm run preview` | Preview the SSR build locally. |
 
-> **Note:** Only `.output/public` is required for static hosting. Nuxt and npm will regenerate `.nuxt/` and `node_modules/` during fresh deployments on Netlify.
+> **Note:** Only the `dist/` directory is required for static hosting. Nuxt and npm will regenerate `.nuxt/` and `node_modules/` during fresh deployments on Netlify.
