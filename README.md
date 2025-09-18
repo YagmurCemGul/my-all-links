@@ -1,4 +1,4 @@
-# Yağmur Cem Gül • OneLink
+# Yağmur Cem Gül • All-Link
 
 [![Built with Nuxt 3](https://img.shields.io/badge/Nuxt-3.1.1-00DC82?logo=nuxt.js&logoColor=white)](#tech-stack)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38BDF8?logo=tailwind-css&logoColor=white)](#tech-stack)
